@@ -213,7 +213,9 @@ function App() {
             ))}
           </ul>
         )}
-        <TodosEmptyList renderTodos={renderTodos} todosStatus={todosStatus} />
+        {renderTodos.length === 0 && (
+          <TodosEmptyList todosStatus={todosStatus} />
+        )}
       </main>
     </Fragment>
   );

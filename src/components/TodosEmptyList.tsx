@@ -3,17 +3,12 @@ import classes from "../App.module.css";
 
 const TodosEmptyList: React.FC<{
   todosStatus: { all: boolean; pending: boolean; completed: boolean };
-  renderTodos: {
-    id: number;
-    task: string;
-    status: boolean;
-  }[];
 }> = (props) => {
-  const { todosStatus, renderTodos } = props;
+  const { todosStatus } = props;
 
   return (
     <Fragment>
-      {renderTodos.length === 0 && todosStatus.all && (
+      {todosStatus.all && (
         <div
           className={`${classes["empty-state"]} h-[50vh] text-white flex justify-center flex-col items-center`}
         >
@@ -26,7 +21,7 @@ const TodosEmptyList: React.FC<{
           </p>
         </div>
       )}
-      {renderTodos.length === 0 && todosStatus.pending && (
+      {todosStatus.pending && (
         <div
           className={`${classes["empty-state"]} h-[50vh] text-white flex justify-center flex-col items-center`}
         >
@@ -39,7 +34,7 @@ const TodosEmptyList: React.FC<{
           </p>
         </div>
       )}
-      {renderTodos.length === 0 && todosStatus.completed && (
+      {todosStatus.completed && (
         <div
           className={`${classes["empty-state"]} h-[50vh] text-white flex justify-center flex-col items-center`}
         >
