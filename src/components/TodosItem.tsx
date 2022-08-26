@@ -5,7 +5,7 @@ import classes from "../App.module.css";
 import Modal from "../UI/Modal";
 import { Id } from "react-toastify";
 
-const TodosItem: React.FC<{
+type TodosItemProps = {
   todo: { id: number; task: string; status: boolean };
   onShowModal: (id: number) => void;
   isShowModal: { id: number };
@@ -13,7 +13,9 @@ const TodosItem: React.FC<{
   onEditNameTodo: (id: number) => Id | undefined;
   onDeleteTodo: (id: number) => Id;
   ref: React.Ref<HTMLInputElement>;
-}> = forwardRef((props, ref) => {
+};
+
+const TodosItem: React.FC<TodosItemProps> = forwardRef((props, ref) => {
   const { todo, isShowModal } = props;
 
   return (

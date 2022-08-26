@@ -67,7 +67,7 @@ function App() {
     id: -1,
   });
 
-  const changeStatusHandler = (key: any) => {
+  const changeStatusHandler = (key: string) => {
     if (key === "all") {
       setTodosStatus({
         all: true,

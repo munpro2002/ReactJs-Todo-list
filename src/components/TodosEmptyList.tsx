@@ -1,9 +1,11 @@
 import React, { Fragment } from "react";
 import classes from "../App.module.css";
 
-const TodosEmptyList: React.FC<{
+type TodosEmptyListProps = {
   todosStatus: { all: boolean; pending: boolean; completed: boolean };
-}> = (props) => {
+};
+
+const TodosEmptyList: React.FC<TodosEmptyListProps> = (props) => {
   const { todosStatus } = props;
 
   return (

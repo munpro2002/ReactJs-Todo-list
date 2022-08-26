@@ -4,10 +4,12 @@ import { faListUl, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import classes from "../App.module.css";
 
-const TodosStatus: React.FC<{
-  onChangeStatus: (key: any) => void;
+type todosStatusProps = {
+  onChangeStatus: (key: string) => void;
   todosStatus: { all: boolean; pending: boolean; completed: boolean };
-}> = (props) => {
+};
+
+const TodosStatus: React.FC<todosStatusProps> = (props) => {
   return (
     <ul className="flex text-white gap-1 my-[1rem]">
       <li
