@@ -14,25 +14,32 @@ enum actionType {
   DELETETODO = "DELETE",
 }
 
-interface TodoAction {
+type TodoAction = {
   type: actionType;
-  payload: any;
-}
+  payload: {
+    id: number;
+    task?: string;
+    status?: boolean;
+  };
+};
 
-const todosReducer = (
-  state: Array<{ id: number; task: string; status: boolean }>,
-  action: TodoAction
-): Array<{ id: number; task: string; status: boolean }> => {
+type TodoState = {
+  id: number;
+  task: string;
+  status: boolean;
+}[];
+
+const todosReducer = (state: TodoState, action: TodoAction): TodoState => {
   const { type, payload } = action;
   if (type === actionType.ADDTODO) {
     const addedTodos = [
-      { id: payload.id, task: payload.task, status: false },
+      { id: payload.id, task: payload.task!, status: false },
       ...state,
     ];
     localStorage.setItem("storageTodos", JSON.stringify(addedTodos));
     return addedTodos;
   } else if (type === actionType.DELETETODO) {
-    const deletedTodos = state.filter((todo) => todo.id !== payload);
+    const deletedTodos = state.filter((todo) => todo.id !== payload.id);
     localStorage.setItem("storageTodos", JSON.stringify(deletedTodos));
     return deletedTodos;
   } else if (type === actionType.EDITTODO) {
@@ -126,7 +133,7 @@ function App() {
   const deleteTodoHandler = (id: number) => {
     dispatch({
       type: actionType.DELETETODO,
-      payload: id,
+      payload: { id: id },
     });
 
     return toast.warning("You've just deleted one task", {
@@ -144,9 +151,7 @@ function App() {
   const editStatusTodoHandler = (id: number) => {
     dispatch({
       type: actionType.EDITTODO,
-      payload: {
-        id: id,
-      },
+      payload: { id: id },
     });
   };
 
