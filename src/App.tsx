@@ -31,18 +31,18 @@ type TodoState = {
 
 const todosReducer = (state: TodoState, action: TodoAction): TodoState => {
   const { type, payload } = action;
-  if (type === actionType.ADDTODO) {
+  if (type === "ADD") {
     const addedTodos = [
       { id: payload.id, task: payload.task!, status: false },
       ...state,
     ];
     localStorage.setItem("storageTodos", JSON.stringify(addedTodos));
     return addedTodos;
-  } else if (type === actionType.DELETETODO) {
+  } else if (type === "DELETE") {
     const deletedTodos = state.filter((todo) => todo.id !== payload.id);
     localStorage.setItem("storageTodos", JSON.stringify(deletedTodos));
     return deletedTodos;
-  } else if (type === actionType.EDITTODO) {
+  } else if (type === "EDIT") {
     const index = state.findIndex((todo) => todo.id === payload.id);
     const newState = state;
     newState[index].task = payload.task ? payload.task : state[index].task;
