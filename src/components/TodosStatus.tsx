@@ -1,4 +1,3 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListUl, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
@@ -9,7 +8,7 @@ type todosStatusProps = {
   todosStatus: { all: boolean; pending: boolean; completed: boolean };
 };
 
-const TodosStatus: React.FC<todosStatusProps> = (props) => {
+const TodosStatus = (props: todosStatusProps) => {
   return (
     <ul className="flex text-white gap-1 my-[1rem]">
       <li

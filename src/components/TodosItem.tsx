@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import classes from "../App.module.css";
@@ -12,10 +12,11 @@ type TodosItemProps = {
   onEditStatusTodo: (id: number) => void;
   onEditNameTodo: (id: number) => Id | undefined;
   onDeleteTodo: (id: number) => Id;
-  ref: React.Ref<HTMLInputElement>;
 };
 
-const TodosItem: React.FC<TodosItemProps> = forwardRef((props, ref) => {
+type TodosItemRef = HTMLInputElement;
+
+const TodosItem = forwardRef<TodosItemRef, TodosItemProps>((props, ref) => {
   const { todo, isShowModal } = props;
 
   return (
