@@ -1,11 +1,11 @@
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import classes from "../App.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Id } from "react-toastify";
 
 type AddTodoFormProps = {
-  onAddTodo: (event: any) => Id;
+  onAddTodo: (event: React.FormEvent<HTMLFormElement>) => Id;
 };
 
 type AddTodoFormRef = HTMLInputElement;

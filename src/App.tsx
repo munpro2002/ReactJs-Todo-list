@@ -56,8 +56,8 @@ const todosReducer = (state: TodoState, action: TodoAction): TodoState => {
 };
 
 function App() {
-  const inputRef: any = React.useRef<HTMLInputElement>();
-  const renameInputRef: any = React.useRef<HTMLInputElement>();
+  const inputRef = React.useRef<HTMLInputElement>(null!);
+  const renameInputRef = React.useRef<HTMLInputElement>(null!);
 
   const [todos, dispatch] = useReducer(
     todosReducer,
@@ -96,7 +96,7 @@ function App() {
     }
   };
 
-  const addTodoHandler = (event: any) => {
+  const addTodoHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const idForNewTodo: number = Math.random();
 
@@ -117,7 +117,9 @@ function App() {
       type: actionType.ADDTODO,
       payload: { id: idForNewTodo, task: newTodo },
     });
-    event.target.reset();
+
+    (event.target as any).reset();
+
     return toast.success("Wow so easy!", {
       position: "bottom-left",
       autoClose: 5000,
